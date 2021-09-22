@@ -8,4 +8,15 @@ fetch(requestURL)
     })
         .then(function (data) {
             console.log(data);
+            generateMap(data);
         })
+
+function generateMap(data) {
+    L.mapquest.key = mapquestAPIKey;
+
+        var map = L.mapquest.map('map', {
+          center: [37.7749, -122.4194],
+          layers: L.mapquest.tileLayer('map'),
+          zoom: 12
+        });
+}
