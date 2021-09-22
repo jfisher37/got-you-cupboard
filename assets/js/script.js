@@ -9,7 +9,7 @@ let searchButtonEl = document.getElementById('search-button');
 let ingredientBtnsEl = document.getElementById('ingredient-btns');
 let recipeAreaEl = document.getElementById('recipe-cards');
 let searchAreaEl = document.getElementById('search-area');
-let ingredbtnArr = [];
+
 
 
 // create a function for submit for the input field that will create deletable ingredient buttons giv buttons class of "ingredBtns"
@@ -32,6 +32,30 @@ ingredientBtnsEl.addEventListener('click', function(e){
 })
 
 // create event listener for search button
+
+function getApi(request) {
+    fetch(request)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data)
+
+    }
+    )};
+
+searchButtonEl.addEventListener('click', function(e){
+    e.stopPropagation();
+    let ingredArr = [];
+    console.log(ingredientBtnsEl.children[0].innerHTML);
+    for(let i = 0; i < ingredientBtnsEl.children.length; i++){
+        ingredArr.push(ingredientBtnsEl.children[i].innerHTML)
+    }
+    console.log(ingredArr);
+    let requestUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + ingredient + '&app_id=fe7e2c72&app_key=52bbe6fe9daf9dff04bec2b9b2033969' + health 
+
+    getApi(requestUrl);
+})
 
 
 // create a function to put into that function that will add check box parameters to fetch request
