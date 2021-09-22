@@ -7,16 +7,25 @@ fetch(requestURL)
         return response.json();
     })
         .then(function (data) {
-            console.log(data);
+            // console.log(data);
             generateMap(data);
         })
 
 function generateMap(data) {
+    var latOfSearch = data.origin.displayLatLng.lat;
+    var lngOfSearch = data.origin.displayLatLng.lng; 
+    
     L.mapquest.key = mapquestAPIKey;
-
-        var map = L.mapquest.map('map', {
-          center: [37.7749, -122.4194],
-          layers: L.mapquest.tileLayer('map'),
-          zoom: 12
-        });
+    // creates map
+    var map = L.mapquest.map('map', {
+        center: [latOfSearch, lngOfSearch],
+        layers: L.mapquest.tileLayer('map'),
+        zoom: 13
+    });
+    
+    //adds a marker to the map
+    L.marker([latOfSearch, lngOfSearch], {
+        icon: L.mapquest.icons.marker(),
+        draggable: false
+    }).bindPopup('Philadelphia').addTo(map);
 }
