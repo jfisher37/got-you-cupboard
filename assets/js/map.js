@@ -31,12 +31,12 @@ function generateMap(data) {
             size: 'lg'
         }),
         draggable: false
-    }).bindPopup(data.origin.adminArea5).addTo(map);
+    }).bindPopup("<span id=popup>" + data.origin.adminArea5 + "</span>").addTo(map);
 
     //adds marker for each search result
     var searchResults = data.searchResults;
     for (let i = 0; i < searchResults.length; i++) {
-        var popupText = searchResults[i].name + " | " + searchResults[i].fields.address;
+        var popupText = "<span id=popup>" + searchResults[i].name + "</span>" + "<br>" + searchResults[i].fields.address;
         var groceryStoreLat = searchResults[i].fields.disp_lat;
         var groceryStoreLng = searchResults[i].fields.disp_lng;
 
