@@ -9,6 +9,9 @@ let searchButtonEl = document.getElementById('search-button');
 let ingredientBtnsEl = document.getElementById('ingredient-btns');
 let recipeAreaEl = document.getElementById('recipe-cards');
 let searchAreaEl = document.getElementById('search-area');
+let healthCheckEl = document.querySelectorAll('.health-check');
+
+
 
 
 
@@ -46,18 +49,31 @@ function getApi(request) {
 
 searchButtonEl.addEventListener('click', function(e){
     e.stopPropagation();
-    let ingredArr = [];
-    console.log(ingredientBtnsEl.children[0].innerHTML);
+   
+    let ingredString =""
     for(let i = 0; i < ingredientBtnsEl.children.length; i++){
-        ingredArr.push(ingredientBtnsEl.children[i].innerHTML)
+        if (i === 0) {
+            ingredString+= ingredientBtnsEl.children[i].innerHTML
+        }
+        else {
+            ingredString+= '%20' + ingredientBtnsEl.children[i].innerHTML
+        }
+    };
+    let healthString = "";
+    for (let i = 0; i < healthCheckEl.length; i++){
+        if (healthCheckEl[i].checked) {
+            healthString += '&health=' + healthCheckEl[i].dataset.search
+        }
     }
-    console.log(ingredArr);
-    let requestUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + ingredient + '&app_id=fe7e2c72&app_key=52bbe6fe9daf9dff04bec2b9b2033969' + health 
+    console.log(healthString);
+    console.log(ingredString);
+    let requestUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + ingredString + '&app_id=fe7e2c72&app_key=52bbe6fe9daf9dff04bec2b9b2033969' + healthString; 
 
     getApi(requestUrl);
 })
 
-
+// startUnchecked();
+// console.log(healthCheckEl);
 // create a function to put into that function that will add check box parameters to fetch request
 
 // create a fetch function in this function, have contingencies for if the ingredients listed exist in the ingredients of any given recipe
