@@ -1,24 +1,41 @@
 var mapquestAPIKey = "HPByterGQDhFFn4BqKh67908PJoXqDAf";
-var cityName = "philadelphia";
-var searchRadius = 5;
-var numOfResults = 100;
-var requestURL = "https://www.mapquestapi.com/search/v2/radius?origin=" + cityName + "&radius=" + searchRadius + "&maxMatches=" + numOfResults + "&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|541105&outFormat=json&key=" + mapquestAPIKey;
 
-fetch(requestURL)
-    .then(function (response) {
-        return response.json();
-    })
-        .then(function (data) {
-            generateMap(data);
+var locationSearchEl = document.getElementById("location-search")
+var searchInput = document.getElementById("search")
+
+locationSearchEl.addEventListener("submit", fetchLocationData)
+
+function fetchLocationData() {    
+    var cityName = searchInput.value;
+    var searchRadius = 5;
+    var numOfResults = 100;
+    var requestURL = "https://www.mapquestapi.com/search/v2/radius?origin=" + cityName + "&radius=" + searchRadius + "&maxMatches=" + numOfResults + "&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|541105&outFormat=json&key=" + mapquestAPIKey;
+
+    fetch(requestURL)
+        .then(function (response) {
+            return response.json();
         })
+            .then(function (data) {
+                console.log(data)
+                generateMap(data);
+            })
+    searchInput.value = "";
+}
+
+var map;
 
 function generateMap(data) {
+    // removes existing map
+    if (map != null) {
+        map.remove() ;
+    } 
+
     var latOfSearch = data.origin.displayLatLng.lat;
     var lngOfSearch = data.origin.displayLatLng.lng; 
     
     L.mapquest.key = mapquestAPIKey;
     // creates map
-    var map = L.mapquest.map('map', {
+    map = L.mapquest.map('map', {
         center: [latOfSearch, lngOfSearch],
         layers: L.mapquest.tileLayer('map'),
         zoom: 13
