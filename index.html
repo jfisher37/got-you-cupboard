@@ -43,61 +43,45 @@
                     </label>
                 </form>
 
-                    <div id="ingredient-btns">
+                    <div id="ingredient-btns"> </div>
+
                         <label>
-                            <input type="checkbox" id="gluten-free" name="gluten-free" value="Gluten-Free" />
+                            <input type="checkbox" id="gluten-free" name="gluten-free" value="Gluten-Free" data-search='gluten-free' class="health-check"/>
                             <span>Gluten Free</span>
                         </label>
 
                         <label>
-                            <input type="checkbox" id="dairy-free" name="dairy-free" value="Dairy-Free" />
+                            <input type="checkbox" id="dairy-free" name="dairy-free" value="Dairy-Free" data-search='dairy-free' class="health-check"/>
                             <span>Dairy Free</span>
                         </label>
 
                         <label>
-                            <input type="checkbox" id="peanut-free" name="peanut-Free" value="Peanut-Free" />
+                            <input type="checkbox" id="peanut-free" name="peanut-Free" value="Peanut-Free" data-search='peanut-free' class="health-check"/>
                             <span>Peanut Free</span>
                         </label>
 
                         <label>
-                            <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian" />
+                            <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian" data-search='vegetarian' class="health-check"/>
                             <span>Vegetarian</span>
                         </label>
 
                         <label>
-                            <input type="checkbox" id="vegan" name="vegan" value="Vegan" />
+                            <input type="checkbox" id="vegan" name="vegan" value="Vegan" data-search='vegan' class="health-check"/>
                             <span>Vegan</span>
                         </label>
 
                         <label>
-                            <input type="checkbox" id="kosher" name="kosher" value="Kosher" />
+                            <input type="checkbox" id="kosher" name="kosher" value="Kosher" data-search='kosher' class="health-check"/>
                             <span>Kosher</span>
                         </label>
                         <button class="btn " id="search-button">Search</button>
-                    </div>
+                   
                 
             </div>
         </div>
-        <div class="col s6">
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">testName</span>
-                    <p>test</p>
-                </div>
-            </div>
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">testName</span>
-                    <p>test</p>
-                </div>
-            </div>
-            <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                    <span class="card-title">testName</span>
-                    <p>test</p>
-                </div>
-            </div>
-        </div>
+       <div id="recipe-cards">
+
+       </div>
     </div>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
     <script src="./assets/js/script.js"></script>
