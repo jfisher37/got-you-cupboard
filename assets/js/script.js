@@ -52,8 +52,10 @@ function getApi(request) {
           let recipeLink = document.createElement('a')
           recipeLink.setAttribute('href', data.hits[i].recipe.url);
           recipeLink.setAttribute('target', 'blank_');
+          recipeLink.setAttribute('style', 'display: inline-block');
           let recipeTitle = document.createElement('h2');
           recipeTitle.innerHTML = data.hits[i].recipe.label;
+          recipeTitle.setAttribute('style', 'font-size: 2em')
           recipeCard.appendChild(recipeTitle);
           let recipePic = document.createElement('img');
           recipePic.setAttribute('src', data.hits[i].recipe.image);
