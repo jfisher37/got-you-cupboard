@@ -1,11 +1,11 @@
 var mapquestAPIKey = "HPByterGQDhFFn4BqKh67908PJoXqDAf";
 
+
 var locationSearchEl = document.getElementById("location-search");
 var locationSearchInput = document.querySelector(".location-input-value");
 var numOfReultsInput = document.querySelector(".num-of-results-input");
 var searchRadiusInput = document.querySelector(".search-radius-input");
 
-locationSearchEl.addEventListener("submit", fetchLocationData);
 
 function fetchLocationData() {    
     var cityName = locationSearchInput.value;
@@ -67,3 +67,8 @@ function generateMap(data) {
         }).bindPopup(popupText).addTo(map);
     }
 }
+
+locationSearchEl.addEventListener("submit", function(e){
+    e.preventDefault;
+    fetchLocationData();
+});
