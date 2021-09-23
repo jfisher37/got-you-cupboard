@@ -1,6 +1,6 @@
 #max-size {
     /* max height - header height */
-    height: calc(100vh - 64px);
+    height: calc(100vh - 128px);
     width: 100%;
 }
 
@@ -12,4 +12,25 @@
 #popup {
     font-weight: 700;
     font-size: 14px;
+}
+
+.location-input {
+    width: 100%;
+}
+
+.search-radius {
+    width: 185px;
+}
+
+.num-of-results {
+    width: 185px;
+}
+
+.navbar-title {
+    margin-left: 30%;
+}
+
+.nav-wrapper .input-field input[type="search"] {
+    padding-left: 3rem;
+    width: calc(100% - 3rem);
 }
