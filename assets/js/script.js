@@ -46,7 +46,7 @@ function getApi(request) {
     .then(function (data) {
       console.log(data)
       console.log(data.hits[0].recipe.image);
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < data.hits.length; i++) {
           let recipeCard = document.createElement('div')
           recipeCard.setAttribute('style', 'height: 275px; width: 150px; background-color: green; color: white; border: solid black 3px; margin: 10px');
           let recipeLink = document.createElement('a')
@@ -73,6 +73,10 @@ function getApi(request) {
 
 searchButtonEl.addEventListener('click', function(e){
     e.stopPropagation();
+
+    while (recipeAreaEl.hasChildNodes()){
+        recipeAreaEl.removeChild(recipeAreaEl.firstChild)
+    };
    
     let ingredString =""
     for(let i = 0; i < ingredientBtnsEl.children.length; i++){
