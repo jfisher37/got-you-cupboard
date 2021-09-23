@@ -14,22 +14,23 @@
     font-size: 14px;
 }
 
-.input-field {
+.location-input {
     width: 100%;
 }
 
-select.browser-default {
-    width: 48%;
-    display: inline;
-    height: 36px;
+.search-radius {
+    width: 185px;
 }
 
-.select-div {
-    width: 56%;
-    position: absolute;
-    right: 0;
+.num-of-results {
+    width: 185px;
+    margin-right: 185px;
 }
 
 .navbar-title {
-    margin-left: 14%;
+    margin-left: 30%;
+}
+
+.nav-wrapper .input-field input[type="search"] {
+    padding-left: 3rem;
 }
