@@ -18,11 +18,13 @@ let healthCheckEl = document.querySelectorAll('.health-check');
 // create a function for submit for the input field that will create deletable ingredient buttons giv buttons class of "ingredBtns"
 searchAreaEl.addEventListener('submit', function(e){
     e.preventDefault();
+    if (searchInputEl.value){
     let newBtn = document.createElement("button")
     newBtn.innerHTML = searchInputEl.value;
     newBtn.setAttribute('class', 'ingredBtns')
     ingredientBtnsEl.appendChild(newBtn);
     searchInputEl.value = "";
+    }
 })
 
 // add event listener for ingredient buttons - if class === "ingredBtns" delete on press.
