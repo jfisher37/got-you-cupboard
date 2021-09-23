@@ -1,50 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Got You Cupboard</title>
 </head>
+
 <body>
-    <header>
-
-    </header>
-    <main>
-
-  <div id="search-container">
-    <form id=search-area>
-        <label for="search-bar"><h2>Recipe Search</h2></label>
-        <input type="text" id="search-bar" placeholder="Enter ingredients here">
-        <br>
-        <div id="ingredient-btns">
-            
+    <!--header/hero styles -->
+    <h1 class="green-text center">Got You Cupboard</h1>
+    <!-- div container -->
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <nav>
+                    <div class="nav-wrapper">
+                        <ul id="nav-mobile">
+                            <li><a href="./map-page.html">Need More Ingredients?</a></li>
+                            <li><a href="#">Placeholder Link</a></li>
+                            <li><a href="#">Placeholder Link</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="col s4">
+                    <img class="responsive-img" src="https://placehold.jp/300x300.png"></img>
+                </div>
+            </div>
         </div>
-        <br><br>
-        <label for="gluten-free"> Gluten Free</label>
-        <input type="checkbox" id="gluten-free" name="gluten-free" value="Gluten-Free">
-        <label for="dairy-free"> Dairy Free</label>
-        <input type="checkbox" id="dairy-free" name="dairy-free" value="Dairy-Free">
-        <label for="peanut-free"> Peanut Free</label>
-        <input type="checkbox" id="peanut-free" name="peanut-free" value="Peanut-Free">
-        <label for="vegetarian"> Vegetarian</label>
-        <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian">
-        <label for="vegan"> Vegan</label>
-        <input type="checkbox" id="vegan" name="vegan" value="Vegan">
-        <label for="kosher"> Kosher</label>
-        <input type="checkbox" id="kosher" name="kosher" value="Kosher">
-        <br><br>
-        <button id="search-button">Search</button>
-
-    </form>
-    
     </div>
+    <!-- div row for search area+cards-->
+    <div class="container">
+        <div class="row" id="search-container">
+            <div class="col-s6">
+                <form action="#" id=search-area>
+                    <label>
+                        <input type="text" id="search-bar" placeholder="Type an Ingredient Here and Press Enter">
+                    </label>
+                </form>
 
-    <div id="recipe-cards">
-        
+                    <div id="ingredient-btns"> </div>
+
+                        <label>
+                            <input type="checkbox" id="gluten-free" name="gluten-free" value="Gluten-Free" data-search='gluten-free' class="health-check"/>
+                            <span>Gluten Free</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="dairy-free" name="dairy-free" value="Dairy-Free" data-search='dairy-free' class="health-check"/>
+                            <span>Dairy Free</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="peanut-free" name="peanut-Free" value="Peanut-Free" data-search='peanut-free' class="health-check"/>
+                            <span>Peanut Free</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian" data-search='vegetarian' class="health-check"/>
+                            <span>Vegetarian</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="vegan" name="vegan" value="Vegan" data-search='vegan' class="health-check"/>
+                            <span>Vegan</span>
+                        </label>
+
+                        <label>
+                            <input type="checkbox" id="kosher" name="kosher" value="Kosher" data-search='kosher' class="health-check"/>
+                            <span>Kosher</span>
+                        </label>
+                        <button class="btn " id="search-button">Search</button>
+                   
+                
+            </div>
+        </div>
+       <div id="recipe-cards">
+
+
+ 
+       </div>
     </div>
-    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/js/script.js"></script>
+    
 </body>
+
 </html>
