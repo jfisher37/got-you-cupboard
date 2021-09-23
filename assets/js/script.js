@@ -76,6 +76,7 @@ searchButtonEl.addEventListener('click', function(e){
     for(let i = 0; i < ingredientBtnsEl.children.length; i++){
         if (i === 0) {
             ingredString+= ingredientBtnsEl.children[i].innerHTML
+            console.log(ingredientBtnsEl.children[i].innerHTML);
         }
         else {
             ingredString+= '%20' + ingredientBtnsEl.children[i].innerHTML
