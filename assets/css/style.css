@@ -32,4 +32,5 @@
 
 .nav-wrapper .input-field input[type="search"] {
     padding-left: 3rem;
+    width: calc(100% - 3rem);
 }
