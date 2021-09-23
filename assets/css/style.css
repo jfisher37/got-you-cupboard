@@ -1,6 +1,12 @@
 #recipe-cards{
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.card {
+    height: 350px;
+    width: 200px;
+    margin: 10px;
 }

@@ -61,7 +61,7 @@ function getApi(request) {
           picStyle.appendChild(recipePic);
 
           let cardContent = document.createElement('div');
-          recipeCard.setAttribute('class', 'card-content');
+          cardContent.setAttribute('class', 'card-content');
           recipeCard.appendChild(cardContent);
 
           let recipeTitle = document.createElement('span');
@@ -70,19 +70,18 @@ function getApi(request) {
           cardContent.appendChild(recipeTitle);
 
           let titleIcon = document.createElement('i');
-          titleIcon.innerHTML = 'more-vert';
+          titleIcon.innerHTML = 'more_vert';
           titleIcon.setAttribute('class', 'material-icons right');
           recipeTitle.appendChild(titleIcon);
 
           let linkContain = document.createElement('p');
           cardContent.appendChild(linkContain);
-          console.log(linkContain);
 
           let recipeLink = document.createElement('a');
           recipeLink.setAttribute('href', data.hits[i].recipe.url);
           recipeLink.setAttribute('target', 'blank_');
           recipeLink.innerHTML = "Recipe Here";
-          cardContent.appendChild(recipeLink);
+          linkContain.appendChild(recipeLink);
 
           let cardReveal = document.createElement('div');
           cardReveal.setAttribute('class', 'card-reveal');
@@ -104,13 +103,13 @@ function getApi(request) {
 
           
 
-
+          console.log(recipeCard);
 
 
 
           
       }
-
+      
     }
     )};
 
