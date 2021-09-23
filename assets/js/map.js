@@ -1,14 +1,16 @@
 var mapquestAPIKey = "HPByterGQDhFFn4BqKh67908PJoXqDAf";
 
-var locationSearchEl = document.getElementById("location-search")
-var searchInput = document.getElementById("search")
+var locationSearchEl = document.getElementById("location-search");
+var locationSearchInput = document.querySelector(".location-input-value");
+var numOfReultsInput = document.querySelector(".num-of-results-input");
+var searchRadiusInput = document.querySelector(".search-radius-input");
 
-locationSearchEl.addEventListener("submit", fetchLocationData)
+locationSearchEl.addEventListener("submit", fetchLocationData);
 
 function fetchLocationData() {    
-    var cityName = searchInput.value;
-    var searchRadius = 5;
-    var numOfResults = 100;
+    var cityName = locationSearchInput.value;
+    var searchRadius = searchRadiusInput.value;
+    var numOfResults = numOfReultsInput.value;
     var requestURL = "https://www.mapquestapi.com/search/v2/radius?origin=" + cityName + "&radius=" + searchRadius + "&maxMatches=" + numOfResults + "&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|541105&outFormat=json&key=" + mapquestAPIKey;
 
     fetch(requestURL)
@@ -19,7 +21,9 @@ function fetchLocationData() {
                 console.log(data)
                 generateMap(data);
             })
-    searchInput.value = "";
+    locationSearchInput.value = "";
+    searchRadiusInput.value = "";
+    numOfReultsInput.value = "";
 }
 
 var map;
