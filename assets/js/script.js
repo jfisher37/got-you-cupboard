@@ -47,22 +47,65 @@ function getApi(request) {
       console.log(data)
       console.log(data.hits[0].recipe.image);
       for (let i = 0; i < data.hits.length; i++) {
-          let recipeCard = document.createElement('div')
-          recipeCard.setAttribute('style', 'height: 275px; width: 150px; background-color: green; color: white; border: solid black 3px; margin: 10px');
-          let recipeLink = document.createElement('a')
-          recipeLink.setAttribute('href', data.hits[i].recipe.url);
-          recipeLink.setAttribute('target', 'blank_');
-          recipeLink.setAttribute('style', 'display: inline-block');
-          let recipeTitle = document.createElement('h2');
-          recipeTitle.innerHTML = data.hits[i].recipe.label;
-          recipeTitle.setAttribute('style', 'font-size: 2em')
-          recipeCard.appendChild(recipeTitle);
+          let recipeCard = document.createElement('div');
+          recipeCard.setAttribute('class', 'card');
+          recipeAreaEl.appendChild(recipeCard);
+
+          let picStyle = document.createElement('div');
+          picStyle.setAttribute('class', 'card-image waves-effect waves-block waves-light');
+          recipeCard.appendChild(picStyle);
+
           let recipePic = document.createElement('img');
           recipePic.setAttribute('src', data.hits[i].recipe.image);
-          recipePic.setAttribute('style', 'height: 100px; width: 100px');
-          recipeCard.appendChild(recipePic);
-          recipeLink.appendChild(recipeCard);
-          recipeAreaEl.appendChild(recipeLink);
+          recipePic.setAttribute('class', 'activator');
+          picStyle.appendChild(recipePic);
+
+          let cardContent = document.createElement('div');
+          recipeCard.setAttribute('class', 'card-content');
+          recipeCard.appendChild(cardContent);
+
+          let recipeTitle = document.createElement('span');
+          recipeTitle.innerHTML = data.hits[i].recipe.label;
+          recipeTitle.setAttribute('class', 'card-title activator grey-text text-darken-4');
+          cardContent.appendChild(recipeTitle);
+
+          let titleIcon = document.createElement('i');
+          titleIcon.innerHTML = 'more-vert';
+          titleIcon.setAttribute('class', 'material-icons right');
+          recipeTitle.appendChild(titleIcon);
+
+          let linkContain = document.createElement('p');
+          cardContent.appendChild(linkContain);
+          console.log(linkContain);
+
+          let recipeLink = document.createElement('a');
+          recipeLink.setAttribute('href', data.hits[i].recipe.url);
+          recipeLink.setAttribute('target', 'blank_');
+          recipeLink.innerHTML = "Recipe Here";
+          cardContent.appendChild(recipeLink);
+
+          let cardReveal = document.createElement('div');
+          cardReveal.setAttribute('class', 'card-reveal');
+          recipeCard.appendChild(cardReveal);
+
+          let revealTitle = document.createElement('span');
+          revealTitle.innerHTML = data.hits[i].recipe.label;
+          revealTitle.setAttribute('class', 'card-title grey-text text-darken-4');
+          cardReveal.appendChild(revealTitle);
+
+          let revealIcon = document.createElement('i');
+          revealIcon.innerHTML = 'close';
+          revealIcon.setAttribute('class', 'material-icons right');
+          revealTitle.appendChild(revealIcon);
+
+          let ingredText = document.createElement('p');
+          ingredText.innerHTML = 'Ingredients';
+          cardReveal.appendChild(ingredText);
+
+          
+
+
+
 
 
           
