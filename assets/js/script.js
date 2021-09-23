@@ -43,6 +43,26 @@ function getApi(request) {
     })
     .then(function (data) {
       console.log(data)
+      console.log(data.hits[0].recipe.image);
+      for (let i = 0; i < 10; i++) {
+          let recipeCard = document.createElement('div')
+          recipeCard.setAttribute('style', 'height: 275px; width: 150px; background-color: green; color: white; border: solid black 3px; margin: 10px');
+          let recipeLink = document.createElement('a')
+          recipeLink.setAttribute('href', data.hits[i].recipe.url);
+          recipeLink.setAttribute('target', 'blank_');
+          let recipeTitle = document.createElement('h2');
+          recipeTitle.innerHTML = data.hits[i].recipe.label;
+          recipeCard.appendChild(recipeTitle);
+          let recipePic = document.createElement('img');
+          recipePic.setAttribute('src', data.hits[i].recipe.image);
+          recipePic.setAttribute('style', 'height: 100px; width: 100px');
+          recipeCard.appendChild(recipePic);
+          recipeLink.appendChild(recipeCard);
+          recipeAreaEl.appendChild(recipeLink);
+
+
+          
+      }
 
     }
     )};
@@ -65,15 +85,11 @@ searchButtonEl.addEventListener('click', function(e){
             healthString += '&health=' + healthCheckEl[i].dataset.search
         }
     }
-    console.log(healthString);
-    console.log(ingredString);
     let requestUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + ingredString + '&app_id=fe7e2c72&app_key=52bbe6fe9daf9dff04bec2b9b2033969' + healthString; 
 
     getApi(requestUrl);
 })
 
-// startUnchecked();
-// console.log(healthCheckEl);
 // create a function to put into that function that will add check box parameters to fetch request
 
 // create a fetch function in this function, have contingencies for if the ingredients listed exist in the ingredients of any given recipe
