@@ -69,6 +69,6 @@ function generateMap(data) {
 }
 
 locationSearchEl.addEventListener("submit", function(e){
-    e.preventDefault;
+    e.preventDefault();
     fetchLocationData();
 });
