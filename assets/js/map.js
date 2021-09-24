@@ -12,8 +12,10 @@ var numOfResults = 100;
 function fetchLocationData(cityName) {
     searchRadius = searchRadiusInput.value;
     numOfResults = numOfReultsInput.value;
+    if (numOfResults > 1000) {
+        numOfResults = 1000;
+    }
     var requestURL = "https://www.mapquestapi.com/search/v2/radius?origin=" + cityName + "&radius=" + searchRadius + "&maxMatches=" + numOfResults + "&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|541105&outFormat=json&key=" + mapquestAPIKey;
-
     fetch(requestURL)
         .then(function (response) {
             return response.json();
