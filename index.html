@@ -11,81 +11,86 @@
     <title>Got You Cupboard</title>
 </head>
 
-<body class="green accent-3">
-    <h1 class="brown-text text-accent-4 center">Got You Cupboard</h1>
-    <div class="container">
-        <div class="row">
-            <div class="col s4">
-            <img class="responsive-img" src="https://placehold.jp/300x300.png"></img>
-            </div>
-            <div class="col s8">
-                <nav>
-                    <div class="brown accent-2 nav-wrapper">
-                        <ul id="nav-mobile" class="right">
-                            <li><a href="./map-page.html">Need More Ingredients?</a></li>
-                            <li><a href="#">Placeholder Link</a></li>
-                            <li><a href="#">Placeholder Link</a></li>
-                        </ul>
-                    </div>
-                </nav>
+<body class="deep-purple accent-4">
+    <header>
+        <h1 class="orange-text text-lighten-1 center">Got You Cupboard</h1>
+    </header>
+    <main>
+        <div class="container center">
+            <div class="row">
+                <div class="col s6">
+                    <img class="responsive-img" src="./food-photo.jpg"></img>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row" id="search-container">
-            <div class="col s12">
-                <form id="search-area">
+        <div class="container">
+            <div class="row" id="search-container">
+                <div class="col s12">
+                    <form id="search-area">
+                        <label>
+                            <input type="text" id="search-bar" placeholder="Type an Ingredient Here and Press Enter">
+                        </label>
+                    </form>
+
+                    <div id="ingredient-btns"> </div>
+
                     <label>
-                        <input type="text" id="search-bar" placeholder="Type an Ingredient Here and Press Enter">
+                        <input type="checkbox" id="gluten-free" name="gluten-free" value="Gluten-Free"
+                            data-search='gluten-free' class="health-check" />
+                        <span>Gluten Free</span>
                     </label>
-                </form>
 
-                <div id="ingredient-btns"> </div>
+                    <label>
+                        <input type="checkbox" id="dairy-free" name="dairy-free" value="Dairy-Free"
+                            data-search='dairy-free' class="health-check" />
+                        <span>Dairy Free</span>
+                    </label>
 
-                <label>
-                    <input type="checkbox" id="gluten-free" name="gluten-free" value="Gluten-Free"
-                        data-search='gluten-free' class="health-check" />
-                    <span>Gluten Free</span>
-                </label>
+                    <label>
+                        <input type="checkbox" id="peanut-free" name="peanut-Free" value="Peanut-Free"
+                            data-search='peanut-free' class="health-check" />
+                        <span>Peanut Free</span>
+                    </label>
 
-                <label>
-                    <input type="checkbox" id="dairy-free" name="dairy-free" value="Dairy-Free" data-search='dairy-free'
-                        class="health-check" />
-                    <span>Dairy Free</span>
-                </label>
+                    <label>
+                        <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian"
+                            data-search='vegetarian' class="health-check" />
+                        <span>Vegetarian</span>
+                    </label>
 
-                <label>
-                    <input type="checkbox" id="peanut-free" name="peanut-Free" value="Peanut-Free"
-                        data-search='peanut-free' class="health-check" />
-                    <span>Peanut Free</span>
-                </label>
+                    <label>
+                        <input type="checkbox" id="vegan" name="vegan" value="Vegan" data-search='vegan'
+                            class="health-check" />
+                        <span>Vegan</span>
+                    </label>
 
-                <label>
-                    <input type="checkbox" id="vegetarian" name="vegetarian" value="Vegetarian" data-search='vegetarian'
-                        class="health-check" />
-                    <span>Vegetarian</span>
-                </label>
-
-                <label>
-                    <input type="checkbox" id="vegan" name="vegan" value="Vegan" data-search='vegan'
-                        class="health-check" />
-                    <span>Vegan</span>
-                </label>
-
-                <label>
-                    <input type="checkbox" id="kosher" name="kosher" value="Kosher" data-search='kosher'
-                        class="health-check" />
-                    <span>Kosher</span>
-                </label>
-                <button class="btn brown accent-3" id="search-button">Search</button>
+                    <label>
+                        <input type="checkbox" id="kosher" name="kosher" value="Kosher" data-search='kosher'
+                            class="health-check" />
+                        <span>Kosher</span>
+                    </label>
+                    <button class="btn brown accent-3" id="search-button">Search</button>
 
 
+                </div>
+            </div>
+            <div class="row">
+                <div id="recipe-cards"></div>
             </div>
         </div>
-        <div class="row">
-            <div id="recipe-cards"></div>
+    </main>
+    <footer class="page-footer deep-purple accent-2">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 center-align">
+                    <h5 class="white-text text-accent-3">Thanks for visiting!</h5>
+                    <p class="grey-text text-lighten-4">Running low on ingredients? Visit our map of grocery stores
+                        near you!</p>
+                    <i class="material-icons large deep-orange lighten-1 rounded"><a href="map-page.html">map</i>   
+                </div>
+            </div>
         </div>
-    </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
