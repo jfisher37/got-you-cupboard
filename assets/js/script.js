@@ -192,6 +192,31 @@ function getApi(request) {
 
           
       }
+
+        let nextCard = document.createElement('div');
+        nextCard.setAttribute('class', 'card');
+        recipeAreaEl.appendChild(nextCard);
+
+        let nextCardContent = document.createElement('div');
+        nextCardContent.setAttribute('class', 'card-content');
+        nextCard.appendChild(nextCardContent);
+
+        let nextTitle = document.createElement('button');
+        nextTitle.innerHTML = "Load More Results";
+        nextTitle.setAttribute('class', 'card-title activator grey-text text-darken-4');
+        nextCardContent.appendChild(nextTitle);
+
+        nextTitle.addEventListener('click', function(e){
+            e.stopPropagation();
+            
+            while (recipeAreaEl.hasChildNodes()){
+                recipeAreaEl.removeChild(recipeAreaEl.firstChild)
+            };
+
+            let nextRequestUrl = data._links.next.href;
+            console.log(nextRequestUrl);
+            getApi(nextRequestUrl);
+        })
       
     }
     )};
