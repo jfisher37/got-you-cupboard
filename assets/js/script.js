@@ -10,9 +10,37 @@ let ingredientBtnsEl = document.getElementById('ingredient-btns');
 let recipeAreaEl = document.getElementById('recipe-cards');
 let searchAreaEl = document.getElementById('search-area');
 let healthCheckEl = document.querySelectorAll('.health-check');
+let lastIngredSearch = [];
+let lastHealthSearch = []
 
 
+// create a function that will load a modal upon loading, if there's local storage
 
+
+// create a function to push recent search info into local storage
+
+function storeLast(){
+
+    let ingredArr =[];
+    for(let i = 0; i < ingredientBtnsEl.children.length; i++){
+            ingredArr.push(ingredientBtnsEl.children[i].innerHTML)
+            
+    };
+    let healthArr = [];
+    for (let i = 0; i < healthCheckEl.length; i++){
+        if (healthCheckEl[i].checked) {
+            healthArr.push(healthCheckEl[i].value);
+
+        }
+     
+
+    }
+    localStorage.setItem('lastIngredSearch', ingredArr);
+    localStorage.setItem('lastHealthSearch', healthArr);
+
+    console.log(ingredArr);
+    console.log(healthArr);
+}
 
 
 // create a function for submit for the input field that will create deletable ingredient buttons giv buttons class of "ingredBtns"
@@ -103,8 +131,6 @@ function getApi(request) {
 
           
 
-          console.log(recipeCard);
-
 
 
           
@@ -139,6 +165,7 @@ searchButtonEl.addEventListener('click', function(e){
     let requestUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + ingredString + '&app_id=fe7e2c72&app_key=52bbe6fe9daf9dff04bec2b9b2033969' + healthString; 
 
     getApi(requestUrl);
+    storeLast();
 })
 
 // create a function to put into that function that will add check box parameters to fetch request
