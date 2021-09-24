@@ -22,7 +22,6 @@ function fetchLocationData(cityName) {
                 console.log(data);
                 generateMap(data);
             })
-    localStorage.setItem("previous-city-search", locationSearchInput.value);
     locationSearchInput.value = "";
     searchRadiusInput.value = "";
     numOfReultsInput.value = "";
@@ -74,6 +73,7 @@ locationSearchEl.addEventListener("submit", function(e){
     e.preventDefault();
     cityName = locationSearchInput.value;
     fetchLocationData(cityName);
+    localStorage.setItem("previous-city-search", cityName);
 });
 
 function init() {
