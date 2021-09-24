@@ -1,16 +1,18 @@
 var mapquestAPIKey = "HPByterGQDhFFn4BqKh67908PJoXqDAf";
 
-
 var locationSearchEl = document.getElementById("location-search");
 var locationSearchInput = document.querySelector(".location-input-value");
 var numOfReultsInput = document.querySelector(".num-of-results-input");
 var searchRadiusInput = document.querySelector(".search-radius-input");
 
+var cityName;
+var searchRadius = 5;
+var numOfResults = 100;
 
 function fetchLocationData() {    
-    var cityName = locationSearchInput.value;
-    var searchRadius = searchRadiusInput.value;
-    var numOfResults = numOfReultsInput.value;
+    cityName = locationSearchInput.value;
+    searchRadius = searchRadiusInput.value;
+    numOfResults = numOfReultsInput.value;
     var requestURL = "https://www.mapquestapi.com/search/v2/radius?origin=" + cityName + "&radius=" + searchRadius + "&maxMatches=" + numOfResults + "&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|541105&outFormat=json&key=" + mapquestAPIKey;
 
     fetch(requestURL)
@@ -21,6 +23,7 @@ function fetchLocationData() {
                 console.log(data)
                 generateMap(data);
             })
+    localStorage.setItem("previous-city-search", locationSearchInput.value)
     locationSearchInput.value = "";
     searchRadiusInput.value = "";
     numOfReultsInput.value = "";
@@ -72,3 +75,11 @@ locationSearchEl.addEventListener("submit", function(e){
     e.preventDefault();
     fetchLocationData();
 });
+
+//todo: add local storage for map to load on page load.
+
+function init() {
+    localStorage.getItem("previous-city-search")
+}
+
+init() 
