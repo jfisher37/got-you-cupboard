@@ -51,7 +51,7 @@ function generateMap(data) {
     //adds a marker to the map
     L.marker([latOfSearch, lngOfSearch], {
         icon: L.mapquest.icons.marker({ 
-            primaryColor: '#22407F', 
+            primaryColor: '#f44336', 
             size: 'lg'
         }),
         draggable: false
@@ -65,7 +65,10 @@ function generateMap(data) {
         var groceryStoreLng = searchResults[i].fields.disp_lng;
 
         L.marker([groceryStoreLat, groceryStoreLng], {
-            icon: L.mapquest.icons.marker(),
+            icon: L.mapquest.icons.marker({ 
+                primaryColor: '#2979ff',
+                size: "sm" 
+            }),
             draggable: false
         }).bindPopup(popupText).addTo(map);
     }
