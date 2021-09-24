@@ -9,8 +9,7 @@ var cityName;
 var searchRadius = 5;
 var numOfResults = 100;
 
-function fetchLocationData() {    
-    cityName = locationSearchInput.value;
+function fetchLocationData(cityName) {
     searchRadius = searchRadiusInput.value;
     numOfResults = numOfReultsInput.value;
     var requestURL = "https://www.mapquestapi.com/search/v2/radius?origin=" + cityName + "&radius=" + searchRadius + "&maxMatches=" + numOfResults + "&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|541105&outFormat=json&key=" + mapquestAPIKey;
@@ -20,10 +19,10 @@ function fetchLocationData() {
             return response.json();
         })
             .then(function (data) {
-                console.log(data)
+                console.log(data);
                 generateMap(data);
             })
-    localStorage.setItem("previous-city-search", locationSearchInput.value)
+    localStorage.setItem("previous-city-search", locationSearchInput.value);
     locationSearchInput.value = "";
     searchRadiusInput.value = "";
     numOfReultsInput.value = "";
@@ -73,13 +72,13 @@ function generateMap(data) {
 
 locationSearchEl.addEventListener("submit", function(e){
     e.preventDefault();
-    fetchLocationData();
+    cityName = locationSearchInput.value;
+    fetchLocationData(cityName);
 });
 
-//todo: add local storage for map to load on page load.
-
 function init() {
-    localStorage.getItem("previous-city-search")
+    var previousCity = localStorage.getItem("previous-city-search");
+    fetchLocationData(previousCity);
 }
 
-init() 
+init();
