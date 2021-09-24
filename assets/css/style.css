@@ -57,3 +57,10 @@ body {
 main {
     flex: 1 0 auto;
   }
+#search {
+    color: white;
+}
+
+#search:focus {
+    color: black;
+}
