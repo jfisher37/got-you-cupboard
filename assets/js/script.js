@@ -61,7 +61,7 @@ function getApi(request) {
           picStyle.appendChild(recipePic);
 
           let cardContent = document.createElement('div');
-          cardContent.setAttribute('class', 'card-content');
+          cardContent.setAttribute('class', 'card-content brown lighten-3');
           recipeCard.appendChild(cardContent);
 
           let recipeTitle = document.createElement('span');
