@@ -13,6 +13,9 @@ let healthCheckEl = document.querySelectorAll('.health-check');
 let lastIngredSearch = [];
 let lastHealthSearch = []
 
+// create a function to make card text smaller if string length is >25
+
+
 
 // create a function that will pre-load last search
 
@@ -125,6 +128,12 @@ function getApi(request) {
           let recipeTitle = document.createElement('span');
           recipeTitle.innerHTML = data.hits[i].recipe.label;
           recipeTitle.setAttribute('class', 'card-title activator grey-text text-darken-4');
+          if (recipeTitle.innerHTML.length > 25){
+            recipeTitle.setAttribute('style', 'font-size: 20px; line-height: 20px')
+          }
+          if (recipeTitle.innerHTML.length > 45){
+            recipeTitle.setAttribute('style', 'font-size: 15px; line-height: 15px')
+          }
           cardContent.appendChild(recipeTitle);
 
           let titleIcon = document.createElement('i');
@@ -146,8 +155,9 @@ function getApi(request) {
           recipeCard.appendChild(cardReveal);
 
           let revealTitle = document.createElement('span');
-          revealTitle.innerHTML = data.hits[i].recipe.label;
+          revealTitle.innerHTML = 'Ingredients (' + data.hits[i].recipe.ingredients.length + '):';
           revealTitle.setAttribute('class', 'card-title grey-text text-darken-4');
+          revealTitle.setAttribute('style', 'font-size: 20px;');
           cardReveal.appendChild(revealTitle);
 
           let revealIcon = document.createElement('i');
@@ -155,9 +165,26 @@ function getApi(request) {
           revealIcon.setAttribute('class', 'material-icons right');
           revealTitle.appendChild(revealIcon);
 
-          let ingredText = document.createElement('p');
-          ingredText.innerHTML = 'Ingredients';
+
+          
+          let ingredText = document.createElement('ol');
           cardReveal.appendChild(ingredText);
+
+          
+
+          for (let j = 0; j < data.hits[i].recipe.ingredients.length; j++) {
+              let ingredList = document.createElement('li');
+              ingredList.innerHTML = data.hits[i].recipe.ingredients[j].food;
+              ingredText.appendChild(ingredList);
+              
+          }
+
+          let moreMapLink = document.createElement('a');
+          moreMapLink.innerHTML = "Missing Ingredients?";
+          moreMapLink.setAttribute('href', './map-page.html');
+          cardReveal.appendChild(moreMapLink);
+
+
 
           
 
