@@ -47,3 +47,11 @@
     padding-left: 3rem;
     width: calc(100% - 3rem);
 }
+
+#search {
+    color: white;
+}
+
+#search:focus {
+    color: black;
+}
