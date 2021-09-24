@@ -5,12 +5,13 @@ var locationSearchInput = document.querySelector(".location-input-value");
 var numOfReultsInput = document.querySelector(".num-of-results-input");
 var searchRadiusInput = document.querySelector(".search-radius-input");
 
-locationSearchEl.addEventListener("submit", fetchLocationData);
+var cityName;
+var searchRadius = 5;
+var numOfResults = 100;
 
-function fetchLocationData() {    
-    var cityName = locationSearchInput.value;
-    var searchRadius = searchRadiusInput.value;
-    var numOfResults = numOfReultsInput.value;
+function fetchLocationData(cityName) {
+    searchRadius = searchRadiusInput.value;
+    numOfResults = numOfReultsInput.value;
     var requestURL = "https://www.mapquestapi.com/search/v2/radius?origin=" + cityName + "&radius=" + searchRadius + "&maxMatches=" + numOfResults + "&ambiguities=ignore&hostedData=mqap.ntpois|group_sic_code=?|541105&outFormat=json&key=" + mapquestAPIKey;
 
     fetch(requestURL)
@@ -18,7 +19,7 @@ function fetchLocationData() {
             return response.json();
         })
             .then(function (data) {
-                console.log(data)
+                console.log(data);
                 generateMap(data);
             })
     locationSearchInput.value = "";
@@ -67,3 +68,17 @@ function generateMap(data) {
         }).bindPopup(popupText).addTo(map);
     }
 }
+
+locationSearchEl.addEventListener("submit", function(e){
+    e.preventDefault();
+    cityName = locationSearchInput.value;
+    fetchLocationData(cityName);
+    localStorage.setItem("previous-city-search", cityName);
+});
+
+function init() {
+    var previousCity = localStorage.getItem("previous-city-search");
+    fetchLocationData(previousCity);
+}
+
+init();
