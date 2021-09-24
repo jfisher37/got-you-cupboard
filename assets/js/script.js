@@ -14,7 +14,30 @@ let lastIngredSearch = [];
 let lastHealthSearch = []
 
 
-// create a function that will load a modal upon loading, if there's local storage
+// create a function that will pre-load last search
+
+function loadLast(){
+   console.log(JSON.parse(localStorage.getItem('lastIngredSearch')));
+    let lastIngreds = JSON.parse(localStorage.getItem('lastIngredSearch'));
+    let lastHealth = JSON.parse(localStorage.getItem('lastHealthSearch'));
+    
+    if (lastIngreds) {
+        for (let i = 0; i < lastIngreds.length; i++){
+        let newBtn = document.createElement("button")
+        newBtn.innerHTML = lastIngreds[i];
+        newBtn.setAttribute('class', 'ingredBtns')
+        ingredientBtnsEl.appendChild(newBtn);
+        }
+    }
+    if (lastHealth){
+        for (let i = 0; i < lastHealth.length; i ++){
+           console.log(lastHealth[i]);
+           let selectedHealth = document.querySelector('[data-search =' + lastHealth[i] + ']');
+           console.log(selectedHealth);
+           selectedHealth.checked = true;
+        }
+    }
+}
 
 
 // create a function to push recent search info into local storage
@@ -29,14 +52,14 @@ function storeLast(){
     let healthArr = [];
     for (let i = 0; i < healthCheckEl.length; i++){
         if (healthCheckEl[i].checked) {
-            healthArr.push(healthCheckEl[i].value);
+            healthArr.push(healthCheckEl[i].dataset.search);
 
         }
      
 
     }
-    localStorage.setItem('lastIngredSearch', ingredArr);
-    localStorage.setItem('lastHealthSearch', healthArr);
+    localStorage.setItem('lastIngredSearch', JSON.stringify(ingredArr));
+    localStorage.setItem('lastHealthSearch', JSON.stringify(healthArr));
 
     console.log(ingredArr);
     console.log(healthArr);
@@ -167,6 +190,8 @@ searchButtonEl.addEventListener('click', function(e){
     getApi(requestUrl);
     storeLast();
 })
+
+loadLast();
 
 // create a function to put into that function that will add check box parameters to fetch request
 
