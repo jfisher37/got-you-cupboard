@@ -70,13 +70,20 @@ function storeLast(){
 searchAreaEl.addEventListener('submit', function(e){
     e.preventDefault();
     if (searchInputEl.value){
-    let newBtn = document.createElement("button")
-    newBtn.innerHTML = searchInputEl.value;
-    newBtn.setAttribute('class', 'ingredBtns')
-    ingredientBtnsEl.appendChild(newBtn);
-    searchInputEl.value = "";
+        for(let i = 0; i < ingredientBtnsEl.children.length; i++){
+            let upperIngred = ingredientBtnsEl.children[i].innerHTML.toUpperCase();
+            let upperValue = searchInputEl.value.trim().toUpperCase();
+            if (upperIngred === upperValue) {
+                return
+            } }   
+        let newBtn = document.createElement("button")
+        newBtn.innerHTML = searchInputEl.value.trim();
+        newBtn.setAttribute('class', 'ingredBtns')
+        ingredientBtnsEl.appendChild(newBtn);
+        searchInputEl.value = "";
     }
 })
+
 
 // add event listener for ingredient buttons - if class === "ingredBtns" delete on press.
 
