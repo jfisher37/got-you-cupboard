@@ -10,22 +10,80 @@ let ingredientBtnsEl = document.getElementById('ingredient-btns');
 let recipeAreaEl = document.getElementById('recipe-cards');
 let searchAreaEl = document.getElementById('search-area');
 let healthCheckEl = document.querySelectorAll('.health-check');
+let lastIngredSearch = [];
+let lastHealthSearch = []
 
 
+// create a function that will pre-load last search
 
+function loadLast(){
+   console.log(JSON.parse(localStorage.getItem('lastIngredSearch')));
+    let lastIngreds = JSON.parse(localStorage.getItem('lastIngredSearch'));
+    let lastHealth = JSON.parse(localStorage.getItem('lastHealthSearch'));
+    
+    if (lastIngreds) {
+        for (let i = 0; i < lastIngreds.length; i++){
+        let newBtn = document.createElement("button")
+        newBtn.innerHTML = lastIngreds[i];
+        newBtn.setAttribute('class', 'ingredBtns')
+        ingredientBtnsEl.appendChild(newBtn);
+        }
+    }
+    if (lastHealth){
+        for (let i = 0; i < lastHealth.length; i ++){
+           console.log(lastHealth[i]);
+           let selectedHealth = document.querySelector('[data-search =' + lastHealth[i] + ']');
+           console.log(selectedHealth);
+           selectedHealth.checked = true;
+        }
+    }
+}
+
+
+// create a function to push recent search info into local storage
+
+function storeLast(){
+
+    let ingredArr =[];
+    for(let i = 0; i < ingredientBtnsEl.children.length; i++){
+            ingredArr.push(ingredientBtnsEl.children[i].innerHTML)
+            
+    };
+    let healthArr = [];
+    for (let i = 0; i < healthCheckEl.length; i++){
+        if (healthCheckEl[i].checked) {
+            healthArr.push(healthCheckEl[i].dataset.search);
+
+        }
+     
+
+    }
+    localStorage.setItem('lastIngredSearch', JSON.stringify(ingredArr));
+    localStorage.setItem('lastHealthSearch', JSON.stringify(healthArr));
+
+    console.log(ingredArr);
+    console.log(healthArr);
+}
 
 
 // create a function for submit for the input field that will create deletable ingredient buttons giv buttons class of "ingredBtns"
 searchAreaEl.addEventListener('submit', function(e){
     e.preventDefault();
     if (searchInputEl.value){
-    let newBtn = document.createElement("button")
-    newBtn.innerHTML = searchInputEl.value;
-    newBtn.setAttribute('class', 'ingredBtns')
-    ingredientBtnsEl.appendChild(newBtn);
-    searchInputEl.value = "";
+        for(let i = 0; i < ingredientBtnsEl.children.length; i++){
+            let upperIngred = ingredientBtnsEl.children[i].innerHTML.toUpperCase();
+            let upperValue = searchInputEl.value.trim().toUpperCase();
+            if (upperIngred === upperValue) {
+                return
+            } }   
+        let newBtn = document.createElement("button")
+        newBtn.innerHTML = searchInputEl.value.trim();
+        newBtn.setAttribute('class', 'ingredBtns')
+        ingredientBtnsEl.appendChild(newBtn);
+        searchInputEl.value = "";
     }
 })
+
 
 // add event listener for ingredient buttons - if class === "ingredBtns" delete on press.
 
@@ -103,8 +161,6 @@ function getApi(request) {
 
           
 
-          console.log(recipeCard);
-
 
 
           
@@ -139,7 +195,10 @@ searchButtonEl.addEventListener('click', function(e){
     let requestUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + ingredString + '&app_id=fe7e2c72&app_key=52bbe6fe9daf9dff04bec2b9b2033969' + healthString; 
 
     getApi(requestUrl);
+    storeLast();
 })
+
+loadLast();
 
 // create a function to put into that function that will add check box parameters to fetch request
 
