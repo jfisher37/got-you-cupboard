@@ -109,7 +109,7 @@ function getApi(request) {
       console.log(data.hits[0].recipe.image);
       for (let i = 0; i < data.hits.length; i++) {
           let recipeCard = document.createElement('div');
-          recipeCard.setAttribute('class', 'card');
+          recipeCard.setAttribute('class', 'card brown accent-2');
           recipeAreaEl.appendChild(recipeCard);
 
           let picStyle = document.createElement('div');
@@ -122,7 +122,7 @@ function getApi(request) {
           picStyle.appendChild(recipePic);
 
           let cardContent = document.createElement('div');
-          cardContent.setAttribute('class', 'card-content brown lighten-3');
+          cardContent.setAttribute('class', 'card-content brown accent-2 z-index-2');
           recipeCard.appendChild(cardContent);
 
           let recipeTitle = document.createElement('span');
@@ -151,7 +151,7 @@ function getApi(request) {
           linkContain.appendChild(recipeLink);
 
           let cardReveal = document.createElement('div');
-          cardReveal.setAttribute('class', 'card-reveal');
+          cardReveal.setAttribute('class', 'card-reveal brown darken-1 white-text');
           recipeCard.appendChild(cardReveal);
 
           let revealTitle = document.createElement('span');

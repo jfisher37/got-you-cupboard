@@ -64,3 +64,7 @@ main {
 #search:focus {
     color: black;
 }
+
+#food-photo {
+    max-height: 400px;
+}
