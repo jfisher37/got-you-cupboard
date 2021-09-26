@@ -73,3 +73,7 @@ main {
     padding-left: 25px!important;
     padding-right: 20px;
 }
+
+.card-content a {
+    color: #ffe082;
+}
