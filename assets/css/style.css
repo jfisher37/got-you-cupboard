@@ -68,3 +68,8 @@ main {
 #food-photo {
     max-height: 400px;
 }
+
+.checkboxes  {
+    padding-left: 25px!important;
+    padding-right: 20px;
+}
