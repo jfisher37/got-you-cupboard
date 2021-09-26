@@ -30,7 +30,7 @@ function loadLast(){
         let newBtn = document.createElement("button")
         newBtn.innerHTML = lastIngreds[i];
         newBtn.setAttribute('class', 'ingredBtns btn')
-        newBtn.setAttribute('style', 'background-color: #ffe082; font-size: 14px; color: #D32F2F; font-weight: 500; margin-right: 10px;');
+        newBtn.setAttribute('style', 'background-color: #ffe082; font-size: 14px; color: #D32F2F; font-weight: 500; margin-right: 10px; margin-bottom: 10px;');
         ingredientBtnsEl.appendChild(newBtn);
         }
     }
@@ -107,7 +107,7 @@ function ingredGen(){
         let newBtn = document.createElement("button")
         newBtn.innerHTML = searchInputEl.value.trim();
         newBtn.setAttribute('class', 'ingredBtns btn');
-        newBtn.setAttribute('style', 'background-color: #ffe082; font-size: 14px; color: #D32F2F; font-weight: 500; margin-right: 10px');
+        newBtn.setAttribute('style', 'background-color: #ffe082; font-size: 14px; color: #D32F2F; font-weight: 500; margin-right: 10px; margin-bottom: 10px;');
         ingredientBtnsEl.appendChild(newBtn);
         searchInputEl.value = "";
 }
@@ -155,6 +155,18 @@ function getApi(request) {
     })
     .then(function (data) {
       console.log(data)
+
+      if (data.hits.length === 0) {
+        let noResult = document.createElement('h4');
+        noResult.innerHTML = "No results found. Please simplify your search."
+        recipeAreaEl.setAttribute('style', 'width: 100%');
+        noResult.setAttribute('style', 'color: #D32F2F; text-align: center; width: 100%');
+        recipeAreaEl.appendChild(noResult);
+
+        return;
+          
+      };
+
       console.log(data.hits[0].recipe.image);
       for (let i = 0; i < data.hits.length; i++) {
           let recipeCard = document.createElement('div');
