@@ -10,8 +10,9 @@ let ingredientBtnsEl = document.getElementById('ingredient-btns');
 let recipeAreaEl = document.getElementById('recipe-cards');
 let searchAreaEl = document.getElementById('search-area');
 let healthCheckEl = document.querySelectorAll('.health-check');
+let addIngredBtn = document.getElementById('add-ingredient');
 let lastIngredSearch = [];
-let lastHealthSearch = []
+let lastHealthSearch = [];
 
 // create a function to make card text smaller if string length is >25
 
@@ -68,10 +69,33 @@ function storeLast(){
     console.log(healthArr);
 }
 
+function recSearch (){
+    while (recipeAreaEl.hasChildNodes()){
+        recipeAreaEl.removeChild(recipeAreaEl.firstChild)
+    };
+   
+    let ingredString =""
+    for(let i = 0; i < ingredientBtnsEl.children.length; i++){
+        if (i === 0) {
+            ingredString+= ingredientBtnsEl.children[i].innerHTML
+            console.log(ingredientBtnsEl.children[i].innerHTML);
+        }
+        else {
+            ingredString+= '%20' + ingredientBtnsEl.children[i].innerHTML
+        }
+    };
+    let healthString = "";
+    for (let i = 0; i < healthCheckEl.length; i++){
+        if (healthCheckEl[i].checked) {
+            healthString += '&health=' + healthCheckEl[i].dataset.search
+        }
+    }
+    let requestUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + ingredString + '&app_id=fe7e2c72&app_key=52bbe6fe9daf9dff04bec2b9b2033969' + healthString; 
+    getApi(requestUrl);
+    storeLast();
+}
 
-// create a function for submit for the input field that will create deletable ingredient buttons giv buttons class of "ingredBtns"
-searchAreaEl.addEventListener('submit', function(e){
-    e.preventDefault();
+function ingredGen(){
     if (searchInputEl.value){
         for(let i = 0; i < ingredientBtnsEl.children.length; i++){
             let upperIngred = ingredientBtnsEl.children[i].innerHTML.toUpperCase();
@@ -84,8 +108,31 @@ searchAreaEl.addEventListener('submit', function(e){
         newBtn.setAttribute('class', 'ingredBtns')
         ingredientBtnsEl.appendChild(newBtn);
         searchInputEl.value = "";
+}
+}
+
+// create a function for submit for the input field that will create deletable ingredient buttons giv buttons class of "ingredBtns"
+searchAreaEl.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (searchInputEl.value){
+    ingredGen();
     }
-})
+    else{
+        recSearch();
+    }
+    }
+)
+
+addIngredBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    if (searchInputEl.value){
+    ingredGen();
+    }
+    else{
+        return
+    };
+});
+
 
 
 // add event listener for ingredient buttons - if class === "ingredBtns" delete on press.
@@ -208,11 +255,10 @@ function getApi(request) {
 
         nextTitle.addEventListener('click', function(e){
             e.stopPropagation();
-            
             while (recipeAreaEl.hasChildNodes()){
                 recipeAreaEl.removeChild(recipeAreaEl.firstChild)
             };
-
+            
             let nextRequestUrl = data._links.next.href;
             console.log(nextRequestUrl);
             getApi(nextRequestUrl);
@@ -221,33 +267,12 @@ function getApi(request) {
     }
     )};
 
+
 searchButtonEl.addEventListener('click', function(e){
     e.stopPropagation();
+    recSearch();
 
-    while (recipeAreaEl.hasChildNodes()){
-        recipeAreaEl.removeChild(recipeAreaEl.firstChild)
-    };
-   
-    let ingredString =""
-    for(let i = 0; i < ingredientBtnsEl.children.length; i++){
-        if (i === 0) {
-            ingredString+= ingredientBtnsEl.children[i].innerHTML
-            console.log(ingredientBtnsEl.children[i].innerHTML);
-        }
-        else {
-            ingredString+= '%20' + ingredientBtnsEl.children[i].innerHTML
-        }
-    };
-    let healthString = "";
-    for (let i = 0; i < healthCheckEl.length; i++){
-        if (healthCheckEl[i].checked) {
-            healthString += '&health=' + healthCheckEl[i].dataset.search
-        }
-    }
-    let requestUrl = 'https://api.edamam.com/api/recipes/v2?type=public&q=' + ingredString + '&app_id=fe7e2c72&app_key=52bbe6fe9daf9dff04bec2b9b2033969' + healthString; 
-
-    getApi(requestUrl);
-    storeLast();
+  
 })
 
 loadLast();
