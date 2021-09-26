@@ -48,10 +48,23 @@
     width: calc(100% - 3rem);
 }
 
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+    flex: 1 0 auto;
+  }
 #search {
     color: white;
 }
 
 #search:focus {
     color: black;
+}
+
+#food-photo {
+    max-height: 400px;
 }
