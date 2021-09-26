@@ -25,12 +25,13 @@
 #map-title-holder{
     display: flex;
     justify-content: center;
+    background-color: #ffe082;
 }
 
 #map-title {
     display: inline-block;
     text-align: center;
-    color: white;
+    color: #e51c23;
     font-size: 3em;
 }
 
@@ -66,6 +67,7 @@
 
 #low-nav{
     height: 140px;
+    background-color: #ffe082;
 }
 
 li{
@@ -82,12 +84,7 @@ main {
     flex: 1 0 auto;
   }
 
-.search {
-    color: white;
-    width: 25%;
-    display: inline-block;
-    height: 64px;
-}
+
 
 .search:focus {
     color: black;
