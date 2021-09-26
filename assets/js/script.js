@@ -29,7 +29,8 @@ function loadLast(){
         for (let i = 0; i < lastIngreds.length; i++){
         let newBtn = document.createElement("button")
         newBtn.innerHTML = lastIngreds[i];
-        newBtn.setAttribute('class', 'ingredBtns')
+        newBtn.setAttribute('class', 'ingredBtns btn')
+        newBtn.setAttribute('style', 'background-color: #ffe082; font-size: 14px; color: #D32F2F; font-weight: 500; margin-right: 10px;');
         ingredientBtnsEl.appendChild(newBtn);
         }
     }
@@ -105,7 +106,8 @@ function ingredGen(){
             } }   
         let newBtn = document.createElement("button")
         newBtn.innerHTML = searchInputEl.value.trim();
-        newBtn.setAttribute('class', 'ingredBtns')
+        newBtn.setAttribute('class', 'ingredBtns btn');
+        newBtn.setAttribute('style', 'background-color: #ffe082; font-size: 14px; color: #D32F2F; font-weight: 500; margin-right: 10px');
         ingredientBtnsEl.appendChild(newBtn);
         searchInputEl.value = "";
 }
@@ -139,7 +141,7 @@ addIngredBtn.addEventListener('click', function(e){
 
 ingredientBtnsEl.addEventListener('click', function(e){
     e.stopPropagation();
-    if (e.target.className === "ingredBtns") {
+    if (e.target.className === "ingredBtns btn") {
         e.target.remove();
     }
 })
@@ -175,7 +177,7 @@ function getApi(request) {
           let recipeTitle = document.createElement('span');
           recipeTitle.innerHTML = data.hits[i].recipe.label;
           recipeTitle.setAttribute('class', 'card-title activator white-text');
-          if (recipeTitle.innerHTML.length > 25){
+          if (recipeTitle.innerHTML.length > 15){
             recipeTitle.setAttribute('style', 'font-size: 20px; line-height: 20px')
           }
           if (recipeTitle.innerHTML.length > 45){
@@ -242,7 +244,19 @@ function getApi(request) {
 
         let nextCard = document.createElement('div');
         nextCard.setAttribute('class', 'card');
+        nextCard.setAttribute('class', 'card red darken-2');
         recipeAreaEl.appendChild(nextCard);
+
+
+        if(data._links.next){
+
+        let nextPicStyle = document.createElement('div');
+        nextPicStyle.setAttribute('class', 'card-image waves-effect waves-block waves-light');
+        nextCard.appendChild(nextPicStyle);
+
+        let nextPic = document.createElement('img');
+        nextPic.setAttribute('src', './assets/images/more-food.png');
+        nextPicStyle.appendChild(nextPic);
 
         let nextCardContent = document.createElement('div');
         nextCardContent.setAttribute('class', 'card-content');
@@ -250,7 +264,8 @@ function getApi(request) {
 
         let nextTitle = document.createElement('button');
         nextTitle.innerHTML = "Load More Results";
-        nextTitle.setAttribute('class', 'card-title activator grey-text text-darken-4');
+        nextTitle.setAttribute('class', 'card-title btn text-darken-4');
+        nextTitle.setAttribute('style', 'background-color: #ffe082; font-size: 14px; height: 75px; color: #D32F2F; font-weight: 500;')
         nextCardContent.appendChild(nextTitle);
 
         nextTitle.addEventListener('click', function(e){
@@ -258,12 +273,23 @@ function getApi(request) {
             while (recipeAreaEl.hasChildNodes()){
                 recipeAreaEl.removeChild(recipeAreaEl.firstChild)
             };
-            
             let nextRequestUrl = data._links.next.href;
             console.log(nextRequestUrl);
             getApi(nextRequestUrl);
         })
       
+    }
+        else{
+            let nextCardContent = document.createElement('div');
+            nextCardContent.setAttribute('class', 'card-content');
+            nextCard.appendChild(nextCardContent);
+    
+            let nextTitle = document.createElement('h2');
+            nextTitle.innerHTML = "No More Results";
+            nextTitle.setAttribute('class', 'card-title');
+            nextTitle.setAttribute('style', 'color: #ffe082; font-weight: 500; text-align: center;')
+            nextCardContent.appendChild(nextTitle);
+        }
     }
     )};
 
