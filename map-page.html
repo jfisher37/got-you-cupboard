@@ -12,33 +12,38 @@
 </head>
 <body>
     <header>
-        <nav>
-            <div class="nav-wrapper blue accent-3">
-                <a tabindex="2" href="./index.html" class="brand-logo left navbar-title hide-on-med-and-down">We Got You Cupboard</a>
-                <ul class="left hide-on-small-only">
-                    <li><a tabindex="1" href="./index.html" class="waves-effect red waves-light btn"><i class="material-icons right">home</i>Home</a></li>
-                </ul>
-                <div class="input-field search-radius right">
-                    <input tabindex="4" id="search" class="search-radius-input" placeholder="Search Radius (miles)" type="search" required>
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
-                </div>
-                <div class="input-field num-of-results right">
-                    <input tabindex="3" id="search" class="num-of-results-input" placeholder="Number of Results" type="search" required>
-                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
-                </div>
+        <a tabindex="1" href="./index.html" class="waves-effect red waves-light btn" id="map-home-btn"><i class="material-icons right">home</i>Home</a>
+            <div class="nav-wrapper" id="map-title-holder">
+                <a tabindex="2" href="./index.html"  id="map-title">Got You Cupboard</a>
             </div>
-        </nav>
         <nav>
-            <div class="nav-wrapper blue accent-3">
-                <form id="location-search" action="#">
-                    <div class="input-field location-input">
-                        <input tabindex="5" id="search" class="location-input-value" placeholder="Enter your city" type="search" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">close</i>
-                    </div>
-                </form>
+            <div class="nav-wrapper red darken-2" id="low-nav">
+                <ul>
+                    <li>
+                        <form id="location-search" action="#">
+                            <div class="input-field location-input" id="map-search">
+                                <input tabindex="5" id="search" class="search location-input-value" placeholder="Enter your city" type="search" required style="height: 64px">
+                                <label class="label-icon" for="search"><i class="material-icons" style="line-height: 64px">search</i></label>
+                                <i class="material-icons" style="line-height: 64px">close</i>
+                                </div>
+                        </form>
+                    </li>
+                    <li>
+                        <div class="input-field search-radius">
+                            <input tabindex="4" id="radius-search" class="search search-radius-input" placeholder="Search Radius (miles)" type="search" required style="height: 64px">
+                            <label class="label-icon" for="radius-search"><i class="material-icons" style="line-height: 64px">search</i></label>
+                            <i class="material-icons" style="line-height: 64px">close</i>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-field num-of-results">
+                            <input tabindex="3" id="num-search" class="search num-of-results-input" placeholder="Number of Results" type="search" required style="height: 64px">
+                            <label class="label-icon" for="num-search"><i class="material-icons" style="line-height: 64px">search</i></label>
+                            <i class="material-icons" style="line-height: 64px">close</i>
+                        </div>
+                    </li>
+                </ul>
+            
             </div>
         </nav>
     </header>
