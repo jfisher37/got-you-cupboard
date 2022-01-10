@@ -22,9 +22,9 @@ APIs:
 - Edamam - https://developer.edamam.com/edamam-docs-recipe-api
 
 Contributors: 
+- Joey Fisher - https://github.com/jfisher37
 - Jacob Kelly - https://github.com/zugzw4ng
 - Ken Bentley - https://github.com/kbentley7
-- Joey Fisher - https://github.com/jfisher37
 - Mark Cirineo - https://github.com/markcirineo
 
 ## Installation
